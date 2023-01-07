@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import {
     Text,
     View,
@@ -12,11 +12,21 @@ import {
     TextInput,
     Image
 } from 'react-native';
+import { useDispatch, useSelector } from "react-redux";
+import { setEmail } from "../store/reducers";
 
 const windownWidth = Dimensions.get('window').width;
 const windownheight = Dimensions.get('window').height;
 
 export default Login = ({ navigation }) => {
+    const {email} = useSelector(state=>state.login)
+    const dispatch = useDispatch()
+
+    const _setEmail = (value) => {
+        console.log("🚀 ~ file: login.js:28 ~ value", value)
+        dispatch(setEmail({email:value}))
+    }
+    
     return (
         <ImageBackground
             style={{ height: '100%', width: '100%' }}
@@ -27,7 +37,7 @@ export default Login = ({ navigation }) => {
                 <View style={style.emailAndPass}>
                     <View style={style.email}>
                         <Text style={style.textEmail}>Email:</Text>
-                        <TextInput autoCapitalize="none" placeholder="Nhap Email" style={style.inputEmail} />
+                        <TextInput value={email} autoCapitalize="none" placeholder="Nhap Email" style={style.inputEmail} onChangeText={_setEmail} />
                     </View>
                     <View style={style.password}>
                         <Text style={style.textPassw}>Password:</Text>
