@@ -23,12 +23,14 @@ import song2 from '../../assets/video/song2.mp4';
 import song3 from '../../assets/video/song3.mp4';
 
 import image from '../../assets/avatar.png'
+import { useDispatch } from "react-redux";
+import { setEmail } from "../store/reducers";
 
 const windownWidth = Dimensions.get('window').width;
 const windownheight = Dimensions.get('window').height;
 
 export default HomePage = ({ navigation }) => {
-
+    const dispatch = useDispatch();
     const DATA = [
         {
             id: "all",
@@ -92,12 +94,17 @@ export default HomePage = ({ navigation }) => {
         // console.log(event)
     }
 
+    const onGoback=()=>{
+        dispatch(setEmail({email:'bbbb'}))
+        navigation.goBack()
+    }
+
     return (
         <SafeAreaView style={{ height: '100%', width: '100%', }}>
             <View style={{ backgroundColor: '#eae9e9', width: '100%', height: '7%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#676161' }}>
                 <View>
                     <TouchableOpacity style={{ width: '100%', flexDirection: 'row', margin: 10 }}
-                        onPress={() => navigation.goBack()}>
+                        onPress={onGoback}>
                         <Icon name="youtube" size={30} color="red" />
                         <Text style={{ margin: 7 }}>Youtube</Text>
                     </TouchableOpacity>

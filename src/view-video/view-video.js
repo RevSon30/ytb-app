@@ -71,6 +71,7 @@ export default ViewVideo = ({ navigation, route }) => {
                         </Fontisto.Button>
                     </View>
                 </View>
+                <View><Text>NAMEEEEEE</Text></View>
 
             </View>
         </SafeAreaView>
