@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     email: '',
@@ -9,11 +9,10 @@ const LoginReducer = createSlice({
     name: 'Login',
     initialState,
     reducers: {
-        setEmail: (state, action: PayloadAction<{ email: string }>) => {
-            console.log("dsdsds")
+        setEmail: (state, action) => {
             state.email = action.payload.email
         },
-        setPassword: (state, action: PayloadAction<{ password: string }>) => {
+        setPassword: (state, action) => {
             state.password = action.payload.password
         }
     }
