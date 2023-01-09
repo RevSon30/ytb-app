@@ -1,5 +1,5 @@
 
-import React, { Component,useState } from "react";
+import React, { Component, useState } from "react";
 import {
     Text,
     View,
@@ -13,20 +13,27 @@ import {
     Image
 } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../store/reducers";
+import { setEmail, setPassword } from "../store/reducers";
 
 const windownWidth = Dimensions.get('window').width;
 const windownheight = Dimensions.get('window').height;
 
 export default Login = ({ navigation }) => {
-    const {email} = useSelector(state=>state.login)
+    const { email, password } = useSelector(state => state.login)
     const dispatch = useDispatch()
 
     const _setEmail = (value) => {
-        console.log("🚀 ~ file: login.js:28 ~ value", value)
-        dispatch(setEmail({email:value}))
+        dispatch(setEmail({ email: value }))
     }
-    
+
+    const _setPassword = (value) => {
+        dispatch(setPassword({ password: value }))
+    }
+
+    const login = () => {
+        navigation.navigate('Home');
+    }
+
     return (
         <ImageBackground
             style={{ height: '100%', width: '100%' }}
@@ -41,19 +48,16 @@ export default Login = ({ navigation }) => {
                     </View>
                     <View style={style.password}>
                         <Text style={style.textPassw}>Password:</Text>
-                        <TextInput autoCapitalize="none" secureTextEntry placeholder="Nhap Password" style={style.inputPassw} />
+                        <TextInput autoCapitalize="none" value={password} secureTextEntry placeholder="Nhap Password" style={style.inputPassw} onChangeText={_setPassword} />
                     </View>
                 </View>
 
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.buttonDN}
-                    onPress={() => {
-                        navigation.navigate('Home');
-                    }}>
+                        onPress={login}>
                         <Text style={style.btnText}>
                             Đăng nhập
                         </Text>
-
                     </TouchableOpacity>
 
                     <TouchableOpacity style={style.buttonDK}>
